@@ -43,7 +43,7 @@ export const list = async (req: Request, res: Response, next: NextFunction) => {
             return next(customError);
         }
 
-        return res.customSuccess(200, 'Cart items', { items: owner.cart.items });
+        return res.customSuccess(200, 'Shopping cart', { cart: owner.cart });
 
     } catch (e) {
         console.log(e);

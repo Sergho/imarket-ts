@@ -42,7 +42,9 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
         newUser.cart = cart;
 
         await userRepository.save(newUser);
-        return res.customSuccess(201, 'User successfully created.', {created: newUser});
+
+        delete newUser.cart;
+        return res.customSuccess(201, 'User created.', {created: newUser});
 
     } catch (e) {
         console.log(e)

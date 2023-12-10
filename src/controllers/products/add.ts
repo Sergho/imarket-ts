@@ -51,7 +51,7 @@ export const add = async (req: Request, res: Response, next: NextFunction) => {
         } else newProduct.type = null;
 
         await productRepository.save(newProduct);
-        return res.customSuccess(201, 'Product created', { product: newProduct });
+        return res.customSuccess(201, 'Product created', { created: newProduct });
 
     } catch (e) {
         const customError = new CustomError(500, 'Raw', 'Error');

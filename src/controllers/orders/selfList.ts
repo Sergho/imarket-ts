@@ -6,6 +6,8 @@ import { User } from "../../entity/User";
 export const selfList = async (req: Request, res: Response, next: NextFunction) => {
     try {
         
+        const limit = req.query.limit;
+        
         const ownerId = req.jwtPayload.id;
 
         const userRepository = AppDataSource.getRepository(User);
@@ -18,6 +20,7 @@ export const selfList = async (req: Request, res: Response, next: NextFunction) 
             .leftJoinAndSelect('product.supplier', 'supplier')
             .leftJoinAndSelect('product.type', 'type')
             .where('user.id = :id', { id: ownerId })
+            .limit(limit)
             .orderBy("item.id")
             .getOne();
 
