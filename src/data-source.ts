@@ -17,7 +17,7 @@ export const AppDataSource = new DataSource({
     username: "postgres",
     password: "srgho31296",
     database: "imarket",
-    synchronize: true,
+    synchronize: false,
     logging: false,
     entities: [
         Order,
@@ -30,6 +30,8 @@ export const AppDataSource = new DataSource({
         Supplier,
         User
     ],
-    migrations: [],
+    migrations: [
+        "./src/migration/*.ts"
+    ],
     subscribers: [],
 })
